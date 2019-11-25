@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="manifest" href="manifest.json" />
+  <script async src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.10/pwacompat.min.js"
+    integrity="sha384-I1iiXcTSM6j2xczpDckV+qhhbqiip6FyD6R5CpuqNaWXvyDUvXN5ZhIiyLQ7uuTh"
+    crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+
+
+
+  <script src="./assets/js/jquery.min.js"></script>
+  <script src="./assets/js/bootstrap.min.js"></script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-messaging.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyBxJFWwDFjSGCPBjtuT5BE0GO73Pcc1jBU",
+      authDomain: "pwa-map-3cddf.firebaseapp.com",
+      databaseURL: "https://pwa-map-3cddf.firebaseio.com",
+      projectId: "pwa-map-3cddf",
+      storageBucket: "pwa-map-3cddf.appspot.com",
+      messagingSenderId: "640104362498",
+      appId: "1:640104362498:web:454a90a76206735af1ad1b",
+      measurementId: "G-BF2E4W4BBZ"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    var db = firebase.firestore();
+    var messaging = firebase.messaging();
+
+    messaging.usePublicVapidKey('BPZjgVPlVzRPKKudLnCZck0YuTrwo9XDuvb21Vg7KEAykovZyxihfDZT3oyN0Ze77mgWeKZuZ06__zNrKlx2iZk');
+    var ref = db.collection('fruit').doc('apple');
+
+    ref.set({
+      total: 500,
+      good: 480,
+      sale: 330
+    }).then(() => {
+      console.log('set data successful');
+    });
+
+  </script>
+
+
+  <script>
+    // Check that service workers are supported
+    if ('serviceWorker' in navigator) {
+      // Use the window load event to keep the page load performant
+      window.addEventListener('load', () => {
+
+        // 建立sw.js
+        navigator.serviceWorker.register('./sw.js')
+          .then(function (reg) {
+            console.log(reg.scope); // 看這支sw.js執行的範圍
+          })
+          // 註冊失敗
+          .catch(function (err) {
+            console.log('error: ', err);
+          });
+      });
+    }
+  </script>
+
+</body>
+
+</html>
