@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseMessageService } from './core/services/firebase-message.service';
 import * as Zdog from 'zdog';
+import { FirebaseFirestoreService } from './core/services/firebase-firestore.service';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +9,10 @@ import * as Zdog from 'zdog';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  constructor(private fcm: FirebaseMessageService) { }
+  constructor(private fcm: FirebaseMessageService, private ffs: FirebaseFirestoreService) { }
 
   ngOnInit() {
-    this.fcm.init()
+    // this.fcm.init()
     this.animateGlobal()
   }
 
