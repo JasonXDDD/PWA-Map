@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FirebaseMessageService } from './core/services/firebase-message.service';
+import * as Zdog from 'zdog';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   constructor(private fcm: FirebaseMessageService) { }
 
   ngOnInit() {
