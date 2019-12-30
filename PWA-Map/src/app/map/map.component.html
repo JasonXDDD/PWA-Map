@@ -1,6 +1,30 @@
-<!-- AIzaSyDsalO8effDG175W_FZKg9tpehgqgGYpYY -->
+<!--  -->
 
 <div class="bg-dark w-100 h-100 position-relative">
+  <!-- map.component.html -->
+  <agm-map
+    class="w-100 h-75"
+    [latitude]="location.latitude"
+    [longitude]="location.longitude"
+    [zoom]="location.zoom"
+  >
+    <agm-marker
+      [latitude]="location.marker.lat"
+      [longitude]="location.marker.lng"
+    >
+    <agm-info-window [disableAutoPan]="true">{{location.marker.label}}</agm-info-window>
+  </agm-marker>
+
+
+
+    <agm-direction
+        [origin]="origin"
+        [destination]="destination"
+        [waypoints]="waypoint"
+        [optimizeWaypoints]="true"
+    ></agm-direction>
+
+  </agm-map>
 
   <div class="position-absolute b-0 w-100">
     <app-content></app-content>
