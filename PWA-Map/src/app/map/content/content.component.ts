@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-content',
@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class ContentComponent implements OnInit {
 
   isOpen: boolean = false;
+  @Input() selectPoint;
+  @Output() pointEvent = new EventEmitter<string>()
 
   constructor() { }
 
@@ -25,5 +27,11 @@ export class ContentComponent implements OnInit {
     this.isOpen = !this.isOpen
   }
 
+  doNextPoint(){
+    this.pointEvent.emit("next")
+  }
 
+  doPrevPoint(){
+    this.pointEvent.emit("prev")
+  }
 }

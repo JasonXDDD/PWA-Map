@@ -3,30 +3,30 @@
 <div class="bg-dark w-100 h-100 position-relative">
   <!-- map.component.html -->
   <agm-map
-    class="w-100 h-75"
+    class="w-100"
+    style="height: 80%;"
     [latitude]="location.latitude"
     [longitude]="location.longitude"
     [zoom]="location.zoom"
   >
-    <agm-marker
+    <!-- <agm-marker
       [latitude]="location.marker.lat"
       [longitude]="location.marker.lng"
     >
-    <agm-info-window [disableAutoPan]="true">{{location.marker.label}}</agm-info-window>
-  </agm-marker>
-
-
+      <agm-info-window [disableAutoPan]="true"
+        >{{location.marker.label}}</agm-info-window
+      >
+    </agm-marker> -->
 
     <agm-direction
-        [origin]="origin"
-        [destination]="destination"
-        [waypoints]="waypoint"
-        [optimizeWaypoints]="true"
+      [origin]="origin"
+      [destination]="destination"
+      [waypoints]="waypoint"
+      [optimizeWaypoints]="true"
     ></agm-direction>
-
   </agm-map>
 
   <div class="position-absolute b-0 w-100">
-    <app-content></app-content>
+    <app-content [selectPoint]="select" (pointEvent)="changePoint($event)"></app-content>
   </div>
 </div>

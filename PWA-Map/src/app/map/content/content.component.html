@@ -1,18 +1,31 @@
 <div>
   <div class="p-3 bg-white rounded-huge rounded-bottom" style="transition: all 1s ease-in-out;">
+    <div class="d-flex justify-content-around align-items-center">
+      <button (click)="doPrevPoint()">
+        <i class="fas fa-2x fa-arrow-left" style="color: #ff6f6f"></i>
+      </button>
+      <button>
+        <i class="fas fa-2x fa-map-marker-alt" style="color: #6f9eff"></i>
+      </button>
+      <button (click)="doNextPoint()">
+        <i class="fas fa-2x fa-arrow-right" style="color: #ff6f6f"></i>
+      </button>
+    </div>
+    <hr>
+
     <div class="d-flex justify-content-between align-items-center">
       <div>
-        <h2 class="m-0">台北教育大學</h2>
-        <p class="m-0">0800 - 0900</p>
+        <h2 class="m-0">{{ selectPoint.name }}</h2>
+        <p class="m-0">{{ selectPoint.time }}</p>
       </div>
       <button (click)="animateContent()" >{{ !isOpen? 'Open': 'Close' }}</button>
 
     </div>
 
 
-    <hr>
 
     <div id="content" class="overflow-auto" style="height: 0;">
+      <hr>
       <p>還好這個爆長的英文單字有個較為簡短的名稱Titin（或是connectin），是個蛋白質化合物的化學名稱。大家都知道蛋白質可長可短，所以這個世界上</p>
       <hr>
       <p>還好這個爆長的英文單字有個較為簡短的名稱Titin（或是connectin），是個蛋白質化合物的化學名稱。大家都知道蛋白質可長可短，所以這個世界上</p>
