@@ -136,7 +136,7 @@ export class MapComponent implements OnInit {
 
     if(type === 'open'){
       this.location.zoom = 16
-      $('#map').animate({ height: $('body').height() - 515 }, 300)
+      $('#map').animate({ height: $('body').height() / 2 - 150 }, 300)
     }
 
     if(type === 'close'){
