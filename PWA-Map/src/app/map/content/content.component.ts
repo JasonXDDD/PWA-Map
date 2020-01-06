@@ -19,9 +19,11 @@ export class ContentComponent implements OnInit {
   animateContent(){
     if(this.isOpen){
       $('#content').animate({ height: 0 }, 300)
+      this.pointEvent.emit("close")
     }
     else {
       $('#content').animate({ height: '50vh' }, 300)
+      this.pointEvent.emit("open")
     }
 
     this.isOpen = !this.isOpen
