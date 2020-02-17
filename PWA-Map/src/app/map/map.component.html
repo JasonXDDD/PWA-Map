@@ -1,12 +1,12 @@
-<!--  -->
-
 <div class="bg-dark w-100 h-100 position-relative">
   <!-- map.component.html -->
   <agm-map
-    class="w-100 h-map" id="map"
+    class="w-100 h-map"
+    id="map"
     [latitude]="location.latitude"
     [longitude]="location.longitude"
     [zoom]="location.zoom"
+    [styles]="darkStyle"
   >
     <!-- <agm-marker
       [latitude]="location.marker.lat"
@@ -26,6 +26,9 @@
   </agm-map>
 
   <div class="position-absolute b-0 w-100">
-    <app-content [selectPoint]="select" (pointEvent)="changePoint($event)"></app-content>
+    <app-content
+      [selectPoint]="select"
+      (pointEvent)="changePoint($event)"
+    ></app-content>
   </div>
 </div>

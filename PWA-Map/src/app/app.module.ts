@@ -12,6 +12,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AgmCoreModule } from '@agm/core';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -26,11 +27,14 @@ import { AgmCoreModule } from '@agm/core';
 
     AgmCoreModule.forRoot({
       apiKey: environment.gmap,
-      libraries: ["places", "geometry"]
+      libraries: ['places', 'geometry'],
+      language: 'zh-TW'
     }),
 
     AngularFireModule.initializeApp(environment.firebase),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
