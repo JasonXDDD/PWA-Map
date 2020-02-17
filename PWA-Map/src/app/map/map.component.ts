@@ -27,10 +27,10 @@ export class MapComponent implements OnInit {
 
   darkStyle;
 
-  constructor() {}
+  constructor(private mapStyle: MapStyle) {}
 
   ngOnInit() {
-    this.darkStyle = MapStyle.DarkMode;
+    this.darkStyle = this.mapStyle.DarkMode;
     this.location = {
       latitude: 25.0227445,
       longitude: 121.5447426,

@@ -1,18 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppRoutingModule } from '@app/app-routing.module';
+import { AppComponent } from '@app/app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AngularFireModule } from '@angular/fire';
-import { environment } from '../environments/environment';
+import { environment } from '@env/environment';
 
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AgmCoreModule } from '@agm/core';
-import { CoreModule } from './core/core.module';
+import { CoreModule } from '@app/core/core.module';
+import { MapStyle } from '@app/core/data/map_style';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { CoreModule } from './core/core.module';
 
     CoreModule
   ],
-  providers: [],
+  providers: [MapStyle],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
