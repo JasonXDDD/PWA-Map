@@ -8,6 +8,8 @@ interface Location {
   zoom: number;
   marker: any;
 }
+
+const MapHeight = 130
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -23,7 +25,7 @@ export class MapComponent implements OnInit {
   selectId;
 
   tour: any[];
-  mapHeight = 'calc(100vh - 150px)';
+  mapHeight = `calc(100vh - ${MapHeight}px)`;
 
   darkStyle;
 
@@ -142,12 +144,12 @@ export class MapComponent implements OnInit {
 
     if (type === 'open') {
       this.location.zoom = 16;
-      $('#map').animate({ height: $('body').height() / 2 - 150 }, 300);
+      $('#map').animate({ height: $('body').height() / 2 - MapHeight }, 300);
     }
 
     if (type === 'close') {
       this.location.zoom = 13;
-      $('#map').animate({ height: $('body').height() - 150 }, 300);
+      $('#map').animate({ height: $('body').height() - MapHeight }, 300);
     }
 
     this.select = this.tour[this.selectId];
