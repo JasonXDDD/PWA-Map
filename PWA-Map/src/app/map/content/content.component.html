@@ -4,13 +4,13 @@
     style="transition: all 1s ease-in-out;"
   >
     <div class="d-flex justify-content-around align-items-center">
-      <button (click)="doPrevPoint()">
+      <button class="btn" (click)="doPrevPoint()">
         <i class="fas fa-2x fa-arrow-left" style="color: #ff6f6f"></i>
       </button>
-      <button>
+      <button class="btn">
         <i class="fas fa-2x fa-map-marker-alt" style="color: #6f9eff"></i>
       </button>
-      <button (click)="doNextPoint()">
+      <button class="btn" (click)="doNextPoint()">
         <i class="fas fa-2x fa-arrow-right" style="color: #ff6f6f"></i>
       </button>
     </div>
@@ -21,7 +21,7 @@
         <h2 class="m-0 text-white">{{ selectPoint.name }}</h2>
         <p class="m-0 text-white">{{ selectPoint.time }}</p>
       </div>
-      <button class="text-white" (click)="animateContent()">{{ !isOpen? 'Open': 'Close' }}</button>
+      <button class="btn text-white" (click)="animateContent()">{{ !isOpen? 'Open': 'Close' }}</button>
     </div>
 
     <div id="content" class="overflow-auto" style="height: 0;">
