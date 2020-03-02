@@ -14,10 +14,14 @@ import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AgmCoreModule } from '@agm/core';
 import { CoreModule } from '@app/core/core.module';
 import { MapStyle } from '@app/core/data/map_style';
+import { HeaderComponent } from './layout/header/header.component';
+import { BuynowComponent } from './layout/buynow/buynow.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    BuynowComponent
   ],
   imports: [
     BrowserModule,
