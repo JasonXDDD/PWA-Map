@@ -1,10 +1,10 @@
 
-<app-header></app-header>
+<app-header *ngIf="isBuyNow"></app-header>
 
 
 <router-outlet></router-outlet>
 
-<app-buynow></app-buynow>
+<app-buynow *ngIf="isBuyNow"></app-buynow>
 <!-- <div class="bg">
   <div class="container">
     <canvas class="illo"></canvas>

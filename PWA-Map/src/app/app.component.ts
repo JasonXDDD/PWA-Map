@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import * as Zdog from 'zdog';
+import { Router, NavigationEnd } from '@angular/router';
 
 
 @Component({
@@ -11,14 +12,33 @@ import * as Zdog from 'zdog';
 })
 export class AppComponent implements OnInit {
   title = 'PWA-Map';
+  isBuyNow = true;
 
   items: Observable<any[]>;
-  constructor(private db: AngularFirestore) {
+  constructor(private db: AngularFirestore, private router: Router) {
   }
 
   ngOnInit(): void {
+    const self = this;
     // this.animateGlobal()
     this.items = this.db.collection('fruit').valueChanges();
+
+    this.router.events.subscribe(async evt => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      else {
+        console.log(evt.url)
+
+        if(evt.url === '/map'){
+          self.isBuyNow = false;
+        }
+        else {
+          self.isBuyNow = true;
+        }
+      }
+    })
+
   }
 
 
