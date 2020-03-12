@@ -1,31 +1,32 @@
 <div class="bg-dark w-100 h-100 position-relative">
-  <!-- map.component.html -->
-  <agm-map
-    class="w-100 h-map"
-    id="map"
-    [latitude]="location.latitude"
-    [longitude]="location.longitude"
-    [zoom]="location.zoom"
-    [styles]="darkStyle"
-    [disableDefaultUI]="true"
-  >
-    <!-- <agm-marker
-      [latitude]="location.marker.lat"
-      [longitude]="location.marker.lng"
+  <div>
+    <!-- map.component.html -->
+    <agm-map
+      class="w-100 h-map"
+      id="map"
+      [latitude]="location.latitude"
+      [longitude]="location.longitude"
+      [zoom]="location.zoom"
+      [styles]="darkStyle"
+      [disableDefaultUI]="true"
     >
-      <agm-info-window [disableAutoPan]="true"
-        >{{location.marker.label}}</agm-info-window
-      >
-    </agm-marker> -->
+      <agm-marker [iconUrl]="iconUrl" [animation]="animation" [latitude]="nowPosition.lat" [longitude]="nowPosition.lng">
+      </agm-marker>
 
-    <agm-direction
-      [origin]="origin"
-      [destination]="destination"
-      [waypoints]="waypoint"
-      [optimizeWaypoints]="true"
-    ></agm-direction>
-  </agm-map>
+      <agm-direction
+        [origin]="origin"
+        [destination]="destination"
+        [waypoints]="waypoint"
+        [optimizeWaypoints]="true"
+      ></agm-direction>
+    </agm-map>
 
+    <app-tool
+      [isOpen]="isContentOpen"
+      [tourList]="tour"
+      (pointEvent)="selectPoint($event)"
+    ></app-tool>
+  </div>
   <div class="position-absolute b-0 w-100">
     <app-content
       [selectPoint]="select"

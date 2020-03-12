@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MapStyle } from '@app/core/data/map_style';
+import { Component, OnInit, ViewChild } from '@angular/core'
+import { MapStyle } from '@app/core/data/map_style'
 
 interface Location {
-  latitude: number;
-  longitude: number;
-  mapType: string;
-  zoom: number;
-  marker: any;
+  latitude: number
+  longitude: number
+  mapType: string
+  zoom: number
+  marker: any
 }
 
 const MapHeight = 130
@@ -16,23 +16,39 @@ const MapHeight = 130
   styleUrls: ['./map.component.sass']
 })
 export class MapComponent implements OnInit {
-  location: Location;
-  origin;
-  destination;
-  waypoint;
+  location: Location
+  origin
+  destination
+  waypoint
 
-  select;
-  selectId;
+  select
+  selectId
 
-  tour: any[];
-  mapHeight = `calc(100vh - ${MapHeight}px)`;
+  tour: any[]
+  mapHeight = `calc(100vh - ${MapHeight}px)`
 
-  darkStyle;
+  darkStyle
+  isContentOpen
 
-  constructor(private mapStyle: MapStyle) {}
+  nowPosition: any = {
+    lat: [],
+    lng: []
+  }
 
-  ngOnInit() {
-    this.darkStyle = this.mapStyle.DarkMode;
+  iconUrl = 'https://www.shareicon.net/data/32x32/2016/04/28/756617_face_512x512.png';
+  animation = 'BOUNCE';
+
+  constructor (private mapStyle: MapStyle) {
+    if (navigator) {
+      navigator.geolocation.getCurrentPosition(pos => {
+        this.nowPosition.lng = +pos.coords.longitude
+        this.nowPosition.lat = +pos.coords.latitude
+      })
+    }
+  }
+
+  ngOnInit () {
+    this.darkStyle = this.mapStyle.DarkMode
     this.location = {
       latitude: 25.0227445,
       longitude: 121.5447426,
@@ -43,7 +59,7 @@ export class MapComponent implements OnInit {
         lng: 121.5447426,
         label: 'XDD'
       }
-    };
+    }
 
     // this.origin = {
     //   lat: 25.0227445,
@@ -70,13 +86,14 @@ export class MapComponent implements OnInit {
     //   }
     // ]
 
-
     this.tour = [
       {
         name: '台北教育大學',
         time: '07:00 - 09:00',
-        description: '國立臺北教育大學是一所專門培育小學師資的教育大學，位於臺北市大安區。前身為「省立臺北師專」，於2005年改為現名，校風保守，留有師範院校的傳統特色。現與國立臺中教育大學為臺灣僅存的兩所國民小學師資培育專門學校之一。',
-        image: 'https://img.ltn.com.tw/Upload/news/600/2016/10/22/phpWi7Tnx.jpeg',
+        description:
+          '國立臺北教育大學是一所專門培育小學師資的教育大學，位於臺北市大安區。前身為「省立臺北師專」，於2005年改為現名，校風保守，留有師範院校的傳統特色。現與國立臺中教育大學為臺灣僅存的兩所國民小學師資培育專門學校之一。',
+        image:
+          'https://img.ltn.com.tw/Upload/news/600/2016/10/22/phpWi7Tnx.jpeg',
         lat: 25.023387,
         lng: 121.5431559
       },
@@ -84,7 +101,8 @@ export class MapComponent implements OnInit {
         name: '台北 101',
         time: '09:30 - 12:00',
         // tslint:disable-next-line: max-line-length
-        description: '台北101是位於臺灣臺北市信義區的摩天大樓，樓高508公尺，地上樓層共有101層、另有地下5層，總樓地板面積37萬1千平方公尺，由李祖原聯合建築師事務所設計，KTRT團隊承造，於1999年9月動工，2004年12月31日完工開幕。最初名稱為臺北國際金融中心，2003年改為現名。',
+        description:
+          '台北101是位於臺灣臺北市信義區的摩天大樓，樓高508公尺，地上樓層共有101層、另有地下5層，總樓地板面積37萬1千平方公尺，由李祖原聯合建築師事務所設計，KTRT團隊承造，於1999年9月動工，2004年12月31日完工開幕。最初名稱為臺北國際金融中心，2003年改為現名。',
         image: 'https://cdn.getyourguide.com/img/tour_img-1878872-146.jpg',
         lat: 25.033976,
         lng: 121.5623502
@@ -93,30 +111,35 @@ export class MapComponent implements OnInit {
         name: '台北車站',
         time: '12:30 - 14:00',
         // tslint:disable-next-line: max-line-length
-        description: '臺北車站位於臺灣臺北市中正區，為臺鐵、台灣高鐵、臺北捷運的地下化鐵路車站，同時是與桃園機場捷運共站的車站；周邊則有臺北轉運站、國光客運臺北車站等公共汽車站點。不但是臺北都會區與北臺灣首要的公共運輸樞紐，也是全臺灣運量最大的鐵路車站，每日進出人次約52萬以上，長期穩坐台鐵各車站總運量首位，總使用人次則居於全球第25名。',
-        image: 'https://photo.travelking.com.tw/scenery/36C8FB62-5AFB-4249-B911-EE7AEA50B6BB_e.jpg',
+        description:
+          '臺北車站位於臺灣臺北市中正區，為臺鐵、台灣高鐵、臺北捷運的地下化鐵路車站，同時是與桃園機場捷運共站的車站；周邊則有臺北轉運站、國光客運臺北車站等公共汽車站點。不但是臺北都會區與北臺灣首要的公共運輸樞紐，也是全臺灣運量最大的鐵路車站，每日進出人次約52萬以上，長期穩坐台鐵各車站總運量首位，總使用人次則居於全球第25名。',
+        image:
+          'https://photo.travelking.com.tw/scenery/36C8FB62-5AFB-4249-B911-EE7AEA50B6BB_e.jpg',
         lat: 25.0473723,
         lng: 121.5146958
       }
-    ];
+    ]
 
-    this.origin = this.genLocation('endpoint', this.tour[0]);
-    this.destination = this.genLocation('endpoint', this.tour[this.tour.length - 1]);
+    this.origin = this.genLocation('endpoint', this.tour[0])
+    this.destination = this.genLocation(
+      'endpoint',
+      this.tour[this.tour.length - 1]
+    )
     this.waypoint = this.tour
       .filter((ele, id, arr) => id !== 0 && id !== arr.length - 1)
-      .map(ele => this.genLocation('waypoint', ele));
+      .map(ele => this.genLocation('waypoint', ele))
 
-    this.selectId = 0;
-    this.select = this.tour[this.selectId];
+    this.selectId = 0
+    this.select = this.tour[this.selectId]
   }
 
   // MAP
-  genLocation(type, point) {
+  genLocation (type, point) {
     if (type === 'endpoint') {
       return {
         lat: point.lat,
         lng: point.lng
-      };
+      }
     }
 
     if (type === 'waypoint') {
@@ -126,39 +149,45 @@ export class MapComponent implements OnInit {
           lng: point.lng
         },
         stopover: true
-      };
+      }
     }
   }
 
-  changePoint(type) {
+  selectPoint (id) {
+    this.selectId = id
+    this.select = this.tour[this.selectId]
+    this.goToPoint(this.select)
+  }
+  changePoint (type) {
     if (type === 'next') {
       if (!(this.tour.length - 1 === this.selectId)) {
-        this.selectId ++;
+        this.selectId++
       }
     }
     if (type === 'prev') {
       if (!(0 === this.selectId)) {
-        this.selectId --;
+        this.selectId--
       }
     }
 
     if (type === 'open') {
-      this.location.zoom = 16;
-      $('#map').animate({ height: $('body').height() / 2 - MapHeight }, 300);
+      this.location.zoom = 16
+      $('#map').animate({ height: $('body').height() / 2 - MapHeight }, 300)
+      this.isContentOpen = true
     }
 
     if (type === 'close') {
-      this.location.zoom = 13;
-      $('#map').animate({ height: $('body').height() - MapHeight }, 300);
+      this.location.zoom = 13
+      $('#map').animate({ height: $('body').height() - MapHeight }, 300)
+      this.isContentOpen = false
     }
 
-    this.select = this.tour[this.selectId];
-    this.goToPoint(this.select);
+    this.select = this.tour[this.selectId]
+    this.goToPoint(this.select)
   }
 
-  goToPoint(point) {
-    this.location.latitude = point.lat;
-    this.location.longitude = point.lng;
+  goToPoint (point) {
+    this.location.latitude = point.lat
+    this.location.longitude = point.lng
   }
-
 }
