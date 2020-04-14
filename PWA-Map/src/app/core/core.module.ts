@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ServerService } from './services/server.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LimitPipe } from './pipe/limit.pipe';
+import { AfsService } from './services/afs.service';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { LimitPipe } from './pipe/limit.pipe';
   exports: [LimitPipe],
 
   providers: [
-    ServerService
+    ServerService,
+    AfsService
   ]
 })
 export class CoreModule { }

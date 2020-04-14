@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AfsService } from '@app/core/services/afs.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-store',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoreComponent implements OnInit {
 
-  constructor() { }
+  data: Observable<any>;
+  constructor(private afs: AfsService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.data = await this.afs.doGetTourList()
   }
 
 }

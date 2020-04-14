@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
+import { ServiceWorkerModule, SwUpdate } from '@angular/service-worker';
 
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '@env/environment';
@@ -16,6 +16,7 @@ import { CoreModule } from '@app/core/core.module';
 import { MapStyle } from '@app/core/data/map_style';
 import { HeaderComponent } from './layout/header/header.component';
 import { BuynowComponent } from './layout/buynow/buynow.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -38,10 +39,20 @@ import { BuynowComponent } from './layout/buynow/buynow.component';
 
     AngularFireModule.initializeApp(environment.firebase),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-
+    HttpClientModule,
     CoreModule
   ],
   providers: [MapStyle],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private swUpdate: SwUpdate) {
+    if (swUpdate.isEnabled) {
+      swUpdate.available.subscribe(() => {
+        if (confirm('New version available. Load New Version?')) {
+          window.location.reload();
+        }
+      });
+    }
+  }
+}
