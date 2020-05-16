@@ -17,12 +17,14 @@ import { MapStyle } from '@app/core/data/map_style';
 import { HeaderComponent } from './layout/header/header.component';
 import { BuynowComponent } from './layout/buynow/buynow.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TabbarComponent } from './layout/tabbar/tabbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    BuynowComponent
+    BuynowComponent,
+    TabbarComponent
   ],
   imports: [
     BrowserModule,

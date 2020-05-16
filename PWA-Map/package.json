@@ -24,6 +24,7 @@
     "@angular/service-worker": "~9.0.1",
     "@types/googlemaps": "^3.39.0",
     "agm-direction": "^0.7.9",
+    "bootstrap": "^4.4.1",
     "firebase": "^7.5.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

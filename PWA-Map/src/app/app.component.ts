@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
       else {
         console.log(evt.url)
 
-        if(evt.url === '/map'){
+        if(evt.url === '/map' || evt.url === '/tour'){
           self.isBuyNow = false;
         }
         else {
